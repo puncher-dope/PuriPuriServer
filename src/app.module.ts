@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { MenuWaitersModule } from './cards-waiters/cards-waiters.module';
-import { MenuBartendersModule } from './cards-bartenders/cards-bartenders.module';
+import { MenuWaitersModule } from './Waiters/menuWaiters.module';
+import { MenuBartendersModule } from './Bartenders/menuBartenders.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
