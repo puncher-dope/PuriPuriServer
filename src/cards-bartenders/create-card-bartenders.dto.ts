@@ -1,21 +1,13 @@
-export type CardsForWaiters = {
-  id: string;
-  name: string;
-  category: "wine" | "vodka" | "cognac" | "wisky" | "coffee" | "coctail" | "limonade";
-  volume: string;
-  structure: string;
-  comment?: string;
-  description?: string;
-};
-
 export type CardsForBartendersStructure = {
   id: string;
   nameStructure: string;
   unit: string;
   count: string;
 };
-export type CardsForBartenders = {
-  id: string;
+
+
+export class CreateCardBartendersDto {
+id: string;
   name: string;
   volume: string
   category: "wine" | "vodka" | "cognac" | "wisky" | "coffee" | "coctail" | "limonade";
@@ -24,8 +16,9 @@ export type CardsForBartenders = {
   'Тюльпан' | 'Вино' | 'Эспрессо' | 'Айриш' | 'Шале' | 'Рюмка'
   structure?: CardsForBartendersStructure[];
   technology?: string
-};
-export type ApiResponseType<T>= {
-  data:T
+}
+
+export class ApiResponseDto<T>{
+data:T
   message: string | null
 }

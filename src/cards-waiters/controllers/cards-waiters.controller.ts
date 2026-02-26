@@ -1,9 +1,11 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
-import { CardsWaitersService } from './cards-waiters.service';
-import { ApiResponseType, CardsForWaiters } from 'src/types/cardsTypes';
-import { ApiResponseDto, CreateCardWaitersDto } from './create-card-waiters.dto';
+import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
+import { CardsWaitersService } from '../service/cards-waiters.service';
+import { CardsForWaiters } from 'src/types/cardsTypes';
+import { ApiResponseDto, CreateCardWaitersDto } from '../create-card-waiters.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('menuWaiters')
+@UseGuards(AuthGuard('jwt'))
 export class CardsWaitersController {
     constructor(private readonly cardsWaitersService:CardsWaitersService){}
     @Post()

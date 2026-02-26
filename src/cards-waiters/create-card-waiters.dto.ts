@@ -1,5 +1,4 @@
 
-
 export class CreateCardWaitersDto {
     id: string;
     name: string;
