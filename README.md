@@ -96,3 +96,53 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+
+
+import { z } from 'zod'
+export const schemaDrinksWaiters = z.object({
+    // id: z.string(),
+    name: z.string().min(1, 'Название обязательно').max(30,'Название должно быть не более 30 символов'),
+    volume: z.string().min(1, 'Объём обязателен'),
+    category: z.enum(['wine', 'vodka', 'cognac', 'wisky', 'coffee', 'coctail', 'limonade'], {
+        error: 'Выберите категорию'
+    }).optional(),
+    structure: z.string(),
+    comment: z.string().optional(),
+    description: z.string().optional(),
+})
+
+export type DrinksWaitersData = z.infer<typeof schemaDrinksWaiters>
+
+
+
+
+
+
+import { z } from 'zod'
+import { schemaItemStructure } from './schemaItemStructure'
+
+
+export const schemaDrinksBartenders = z.object({
+    name: z.string().min(1, 'Название обязательно'),
+    volume: z.string().min(1, 'Объём обязателен'),
+    category: z.enum(['wine', 'vodka', 'cognac', 'wisky', 'coffee', 'coctail', 'limonade'], {
+        error: 'Выберите категорию'
+    }).optional(),
+    dishes: z.enum(['Хайбол', 'Мини-Хайбол', 'Рокс', 'Мини-Рокс',
+                    'Флюте', 'Снифтер', 'Чашка-200','Чашка-300',
+                    'Тюльпан', 'Вино', 'Эспрессо', 'Айриш', 'Шале', 'Рюмка']).optional(),
+    structure: z.array(schemaItemStructure),
+    technology: z.string().optional()
+})
+
+export type schemaDrinksBartendersData = z.infer<typeof schemaDrinksBartenders>
+import { z } from 'zod'
+
+export const schemaItemStructure = z.object({
+    nameStructure: z.string(),
+    unit: z.string(),
+    count: z.string()
+})
+
+export type schemaItemStructureData = z.infer<typeof schemaItemStructure>

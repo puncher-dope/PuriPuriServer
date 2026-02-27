@@ -13,7 +13,7 @@ export class AuthService {
 
 
     async validateUser(login: string, password: string): Promise<boolean>{
-        if(!login && !password) return false
+        if(!login || !password) return false
         if(login !== COMPANY_CREDENTIALS.login) return false
 
         return bcrypt.compare(password, this.hashedPassword)
@@ -22,11 +22,12 @@ export class AuthService {
 
     async login(login: string, password: string): Promise<{token: string}>{
 
-        const isValid = this.validateUser(login, password)
+        const isValid = await this.validateUser(login, password)
 
         if(!isValid){
             throw new UnauthorizedException('Неверный логин или пароль')
         }
+        
 
         const payload = {
             sub:'company',

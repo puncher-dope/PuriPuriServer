@@ -1,5 +1,4 @@
 export type CardsForBartendersStructure = {
-  id: string;
   nameStructure: string;
   unit: string;
   count: string;
@@ -7,7 +6,6 @@ export type CardsForBartendersStructure = {
 
 
 export class CreateCardBartendersDto {
-id: string;
   name: string;
   volume: string
   category: "wine" | "vodka" | "cognac" | "wisky" | "coffee" | "coctail" | "limonade";

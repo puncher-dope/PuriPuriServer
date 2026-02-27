@@ -4,6 +4,7 @@ import { CreateCardBartendersDto } from '../create-card-bartenders.dto';
 import { ApiResponseDto } from '../create-card-bartenders.dto';
 import { CardsForBartenders } from 'src/types/cardsTypes';
 import { AuthGuard } from '@nestjs/passport';
+import { CardsBartenders } from '../schema/schemaWaiters';
 
 @Controller('menuBartenders')
 @UseGuards(AuthGuard('jwt'))
@@ -11,22 +12,22 @@ export class CardsBartendersController {
     constructor(private readonly cardsBartendersService: CardsBartendersService) { }
 
     @Post()
-    createCardBartenders(@Body() body: CreateCardBartendersDto): ApiResponseDto<CardsForBartenders[]> {
+    async createCardBartenders(@Body() body: CreateCardBartendersDto):Promise<CardsBartenders[]>{
         return this.cardsBartendersService.createCardsBartenders(body)
     }
 
     @Get()
-    allCardsWaiters(): CardsForBartenders[] {
+    async allCardsWaiters():Promise<CardsBartenders[]> {
         return this.cardsBartendersService.allCardsBartenders()
     }
 
     @Patch(':id')
-    updateCard(@Param('id') id: string, @Body() body: Partial<CreateCardBartendersDto>) {
+    async updateCard(@Param('id') id: string, @Body() body: Partial<CreateCardBartendersDto>):Promise<CardsBartenders[] | null> {
         return this.cardsBartendersService.updateCard(id, body)
     }
 
     @Delete(':id')
-    deleteOneCard(@Param('id')id: string){
+    async deleteOneCard(@Param('id')id: string):Promise<CardsBartenders[]>{
         return this.cardsBartendersService.deleteOneCard(id)
     }
 }
