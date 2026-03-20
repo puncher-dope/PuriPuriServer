@@ -6,8 +6,12 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { CardsWaiters, SchemaCardsWaiters } from './schema/schemaWaiters';
 
 @Module({
-    imports: [MongooseModule.forFeature([{name: CardsWaiters.name, schema: SchemaCardsWaiters}])],
-    controllers: [CardsWaitersController],
-    providers: [CardsWaitersService],
+  imports: [
+    MongooseModule.forFeature([
+      { name: CardsWaiters.name, schema: SchemaCardsWaiters },
+    ]),
+  ],
+  controllers: [CardsWaitersController],
+  providers: [CardsWaitersService],
 })
-export class MenuWaitersModule { }
+export class MenuWaitersModule {}

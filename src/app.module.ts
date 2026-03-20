@@ -10,19 +10,19 @@ import { MongooseModule } from '@nestjs/mongoose';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal:true, // делает переменные доступными во всем приложении
-      envFilePath: '.env'
+      isGlobal: true,
+      envFilePath: '.env',
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
-        uri: configService.get<string>('DB_CONNECTION_STRING')
+        uri: configService.get<string>('DB_CONNECTION_STRING'),
       }),
-      inject: [ConfigService]
+      inject: [ConfigService],
     }),
     MenuWaitersModule,
     MenuBartendersModule,
-    AuthModule
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
